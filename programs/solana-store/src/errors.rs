@@ -1,5 +1,5 @@
 #[anchor_lang::error_code]
 pub enum ApiKeysErrors {
-    NotFound,
-    KeyExists,
+    DifferentKeysLoaded = 10,
+    InvalidAuthority = 11,
 }

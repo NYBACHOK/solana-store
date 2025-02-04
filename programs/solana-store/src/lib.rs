@@ -1,6 +1,5 @@
 use anchor_lang::prelude::*;
 
-use crate::errors::ApiKeysErrors;
 use instructions::*;
 
 pub mod errors;
@@ -13,22 +12,10 @@ anchor_lang::declare_id!("7QUvVrjgkCbdrKk9ATwwBTtSgbYGNotLk3vZxAv53bn1");
 pub mod solana_store {
     use super::*;
 
-    pub fn initialize(ctx: Context<Initialize>) -> Result<()> {
-        instructions::initialize(ctx)
+    pub fn initialize(ctx: Context<Initialize>, key: Vec<u8>, limit: u64) -> Result<()> {
+        instructions::initialize(ctx, key, limit)
     }
-
-    pub fn append_new_key(
-        ctx: Context<AppendApiAccount<'_>>,
-        pubkey: Vec<u8>,
-        limit: u32,
-    ) -> Result<()> {
-        instructions::append_new_key(ctx, pubkey, limit)
-    }
-
-    pub fn read_key(ctx: Context<ReadAccount<'_>>, pubkey: Vec<u8>) -> Result<u32> {
-        let key = instructions::read_key(ctx, &pubkey);
-        require!(key.is_none(), ApiKeysErrors::NotFound);
-
-        Ok(key.expect("We know it `Some`"))
+    pub fn edit_limit(ctx: Context<EditLimit>, key: Vec<u8>, new_limit: u64) -> Result<()> {
+        instructions::edit_limit(ctx, key, new_limit)
     }
 }
