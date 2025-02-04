@@ -19,11 +19,11 @@ pub struct EditLimit<'info> {
 }
 
 
-pub fn edit_limit(ctx: Context<EditLimit>, key: Vec<u8>, new_limit: u64) -> Result<()> {
+pub fn edit_limit(ctx: Context<EditLimit>, key: String, new_limit: u32) -> Result<()> {
     let account = &mut ctx.accounts.apikeys_account;
 
     require_keys_eq!(account.authority, ctx.accounts.authority.key(),  ApiKeysErrors::InvalidAuthority);
-    require!(account.key == key, ApiKeysErrors::DifferentKeysLoaded);
+    require_eq!(&account.key , &key, ApiKeysErrors::DifferentKeysLoaded);
     
     account.limit = new_limit;
 

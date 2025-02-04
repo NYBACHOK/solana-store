@@ -20,7 +20,7 @@ pub struct Initialize<'info> {
     pub system_program: Program<'info, System>,
 }
 
-pub fn initialize(ctx: Context<Initialize>, key: Vec<u8>, limit: u64) -> Result<()> {
+pub fn initialize(ctx: Context<Initialize>, key: String, limit: u32) -> Result<()> {
     let account = &mut ctx.accounts.apikeys_account;
 
     account.authority = ctx.accounts.authority.key();

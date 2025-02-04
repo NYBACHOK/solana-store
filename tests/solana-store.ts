@@ -8,9 +8,11 @@ describe("solana-store", () => {
 
   const program = anchor.workspace.SolanaStore as Program<SolanaStore>;
 
-  it("Is initialized!", async () => {
-    // Add your test here.
-    const tx = await program.methods.initialize().rpc();
-    console.log("Your transaction signature", tx);
+  const addr = "c312fa79e86049a12a9924a86283cf0b";
+
+
+  it("Create PDA account", async () => {
+    const tx = await program.methods.initialize(addr, 10).rpc();
+    console.log("Transaction signature: ", tx);
   });
 });

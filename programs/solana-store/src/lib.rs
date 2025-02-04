@@ -12,10 +12,10 @@ anchor_lang::declare_id!("7QUvVrjgkCbdrKk9ATwwBTtSgbYGNotLk3vZxAv53bn1");
 pub mod solana_store {
     use super::*;
 
-    pub fn initialize(ctx: Context<Initialize>, key: Vec<u8>, limit: u64) -> Result<()> {
+    pub fn initialize(ctx: Context<Initialize>, key: String, limit: u32) -> Result<()> {
         instructions::initialize(ctx, key, limit)
     }
-    pub fn edit_limit(ctx: Context<EditLimit>, key: Vec<u8>, new_limit: u64) -> Result<()> {
+    pub fn edit_limit(ctx: Context<EditLimit>, key: String, new_limit: u32) -> Result<()> {
         instructions::edit_limit(ctx, key, new_limit)
     }
 }
