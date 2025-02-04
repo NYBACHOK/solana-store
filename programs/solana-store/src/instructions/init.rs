@@ -11,7 +11,7 @@ pub struct Initialize<'info> {
     #[account(
         init,
         payer = authority,
-        space = ApiKeyAccount::MAX_SIZE,
+        space = 12 + ApiKeyAccount::MAX_SIZE,
         seeds = [b"apikey", authority.key().as_ref(), key.as_ref()],
         bump
     )]
