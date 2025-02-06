@@ -5,13 +5,12 @@ use crate::{state::*, errors::*};
 #[derive(Accounts)]
 #[instruction(key : Vec<u8>)]
 pub struct EditLimit<'info> {
-    #[account()]
     pub authority: Signer<'info>,
 
     #[account(
         mut, 
         seeds = [b"apikeys", authority.key().as_ref(), key.as_ref()],
-        bump
+        bump = apikeys_account.bump
     )]
     pub apikeys_account: Account<'info, ApiKeyAccount>,
 

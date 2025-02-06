@@ -2,4 +2,5 @@
 pub enum ApiKeysErrors {
     DifferentKeysLoaded = 10,
     InvalidAuthority = 11,
+    KeyMaxSizeOverflow = 12,
 }
